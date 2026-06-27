@@ -16,7 +16,7 @@ const Signup = () => {
     setSuccessMsg("");
 
     try {
-      const response = await axios.post("http://localhost:3002/signup", {
+      const response = await axios.post("https://zerodha-clone-kappa-six.vercel.app/login", {
         username: username.trim(), // Cleans up any trailing spaces
         email: email.trim(),
         password: password

@@ -17,7 +17,7 @@ import Navbar from "./landing_page/Navbar";
 import Footer from "./landing_page/Footer";
 
 // ==========================================
-//          PROTECTED ROUTE WRAPPER
+//           PROTECTED ROUTE WRAPPER
 // ==========================================
 // Checks browser localStorage for a valid JWT before letting the user view the dashboard
 const ProtectedRoute = ({ children }) => {
@@ -47,19 +47,23 @@ root.render(
       {/* Any request directed here will trigger a token verification check */}
       <Route 
         path="/dashboard/*" 
-        element={
+        element = {
           <ProtectedRoute>
-            {/* This links directly to your second app workspace. 
-              To open the authenticated dashboard app window automatically on login, 
-              point an anchor link or redirect directly to your running dashboard port:
-              window.location.href = "http://localhost:3001"; (or your dashboard port setup)
-            */}
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "60vh", fontFamily: "sans-serif", flexDirection: "column" }}>
-              <h2 style={{ fontWeight: "400", color: "#424242" }}>Authenticated Successfully!</h2>
-              <p style={{ color: "#666" }}>Welcome back, {localStorage.getItem("username") || "Trader"}. Redirecting to your active terminal...</p>
-              <a href="http://localhost:3001" style={{ marginTop: "15px", padding: "10px 20px", backgroundColor: "#387ed1", color: "white", textDecoration: "none", borderRadius: "4px" }}>
-                Open Kite Dashboard
-              </a>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "60vh", fontFamily: "sans-serif", flexDirection: "column", textAlign: "center", padding: "20px" }}>
+              <div style={{ fontSize: "50px", marginBottom: "10px" }}>🚀</div>
+              <h2 style={{ fontWeight: "400", color: "#424242", margin: "10px 0" }}>Authenticated Successfully!</h2>
+              <p style={{ color: "#666", maxWidth: "450px", lineHeight: "1.5", marginBottom: "20px" }}>
+                Welcome back, <strong>{localStorage.getItem("username") || "Trader"}</strong>. Your live Kite session token is secure and active.
+              </p>
+              <button 
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.href = "/login";
+                }} 
+                style={{ padding: "10px 20px", backgroundColor: "#df514c", color: "white", border: "none", borderRadius: "4px", fontSize: "14px", cursor: "pointer", fontWeight: "500" }}
+              >
+                Logout Session
+              </button>
             </div>
           </ProtectedRoute>
         } 
