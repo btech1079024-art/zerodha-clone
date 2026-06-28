@@ -16,8 +16,9 @@ const Signup = () => {
     setSuccessMsg("");
 
     try {
-      const response = await axios.post("https://zerodha-clone-kappa-six.vercel.app/login", {
-        username: username.trim(), // Cleans up any trailing spaces
+      // FIXED: Pointing to your live backend domain and using the correct /signup path
+      const response = await axios.post("https://zerodha-clone-ymu7.vercel.app/signup", {
+        username: username.trim(),
         email: email.trim(),
         password: password
       });
@@ -29,7 +30,6 @@ const Signup = () => {
         }, 2000);
       }
     } catch (err) {
-      // Displays the exact error reason from your express backend console logs
       setError(err.response?.data?.message || "Connection to registration server failed.");
     }
   };
