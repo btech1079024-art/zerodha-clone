@@ -1,0 +1,39 @@
+/* Real-time Flashing Ticker Animations */
+.list li {
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+/* Green Flash for Value Increases */
+.list li.flash-green {
+  animation: flashGreenGlow 0.4s ease-out;
+}
+
+/* Red Flash for Value Decreases */
+.list li.flash-red {
+  animation: flashRedGlow 0.4s ease-out;
+}
+
+@keyframes flashGreenGlow {
+  0% {
+    background-color: rgba(76, 175, 80, 0.25); /* Subtle soft green */
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes flashRedGlow {
+  0% {
+    background-color: rgba(244, 67, 54, 0.25); /* Subtle soft red */
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Fix for Up arrow orientation colors if needed */
+.up-icon {
+  color: #4cae50 !important;
+  vertical-align: middle;
+}
