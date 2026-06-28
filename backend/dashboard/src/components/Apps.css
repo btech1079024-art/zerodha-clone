@@ -1,0 +1,150 @@
+:root {
+  --primary-blue: #387ed1;
+  --text-dark: #444444;
+  --text-muted: #9b9b9b;
+  --border-light: #eeeeee;
+  --bg-card-hover: #fbfbfb;
+}
+
+.apps-page-container {
+  padding: 40px 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-dark);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Heading Layout */
+.apps-hero {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.apps-hero h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.apps-hero p {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-blue);
+  margin-top: 15px;
+  border-radius: 2px;
+}
+
+/* Cards Grid */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* Card Individual Design */
+.app-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 30px 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+
+/* Modern Hover Effect for the presentation wow factor */
+.app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: #dcdcdc;
+  background-color: var(--bg-card-hover);
+}
+
+/* Badges styling */
+.app-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #e3f2fd;
+  color: var(--primary-blue);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Card Header Configuration */
+.app-card-header {
+  margin-bottom: 18px;
+}
+
+.logo-wrapper {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.app-logo-img {
+  max-height: 100%;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+.app-card h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: #333;
+}
+
+.app-tagline {
+  font-size: 13px;
+  color: var(--primary-blue);
+  font-weight: 500;
+  display: block;
+}
+
+/* Description text block */
+.app-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 25px 0;
+  flex-grow: 1;
+}
+
+/* Button UI */
+.btn-explore {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--primary-blue);
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.btn-explore:hover {
+  color: #245fa6;
+}
+
+.arrow-icon {
+  transition: transform 0.2s ease;
+  margin-left: 4px;
+}
+
+.btn-explore:hover .arrow-icon {
+  transform: translateX(4px);
+}
