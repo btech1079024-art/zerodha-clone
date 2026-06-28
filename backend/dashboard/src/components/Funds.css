@@ -1,0 +1,103 @@
+.funds-container {
+  padding: 30px;
+  font-family: "Inter", sans-serif;
+  color: #444;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.funds-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.funds-header-left {
+  font-size: 14px;
+  color: #666;
+}
+
+.funds-header-actions .btn {
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: opacity 0.2s;
+}
+
+.funds-header-actions .btn:hover {
+  opacity: 0.9;
+}
+
+.btn-green {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-blue {
+  background-color: #4185f4;
+  color: white;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin-bottom: 40px;
+}
+
+.funds-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.matrix-card h3 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.main-stat {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.main-stat .label {
+  font-size: 13px;
+  color: #999;
+}
+
+.main-stat .primary-value {
+  font-size: 36px;
+  font-weight: 400;
+  color: #4185f4;
+  margin-top: 5px;
+}
+
+.stat-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 13px;
+  border-bottom: 1px dotted #eee;
+  color: #666;
+}
+
+.stat-row span:last-child {
+  color: #333;
+  font-weight: 500;
+}
