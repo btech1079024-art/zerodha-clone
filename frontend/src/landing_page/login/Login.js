@@ -23,7 +23,7 @@ const Login = () => {
         localStorage.setItem("username", response.data.username);
         
         // Redirecting directly to your live Vercel Frontend dashboard
-        window.location.href = "https://zerodha-clone-m4dl.vercel.app/dashboard";
+        window.location.href = "https://zerodha-clone-i618.vercel.app/";
       }
     } catch (err) {
       setError(err.response?.data?.message || "Invalid credentials");

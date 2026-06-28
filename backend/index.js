@@ -23,7 +23,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: ["https://zerodha-clone-m4dl.vercel.app", "http://localhost:5173", "http://localhost:3000"],
+  origin: ["https://zerodha-clone-m4dl.vercel.app","https://zerodha-clone-i618.vercel.app", "http://localhost:5173", "http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
