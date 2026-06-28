@@ -18,13 +18,36 @@ const UserModel = require("./model/UserModel");
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
-// Secure token fallback secret (Tip: Ideally move this to your .env file as JWT_SECRET=your_key)
+// Secure token fallback secret
 const JWT_SECRET = process.env.JWT_SECRET || "zerodha_super_secret_token_key";
 
 const app = express();
 
-app.use(cors());
+// Updated CORS configuration to handle requests from your Vercel frontend
+app.use(cors({
+  origin: ["https://zerodha-clone-m4dl.vercel.app", "http://localhost:5173", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(bodyParser.json());
+
+// Connect to MongoDB immediately (Crucial for Serverless Environments)
+if (uri) {
+  mongoose.connect(uri)
+    .then(() => console.log("MongoDB connected successfully!"))
+    .catch((err) => console.error("MongoDB connection error:", err));
+} else {
+  console.warn("Warning: MONGO_URL environment variable is missing.");
+}
+
+// ==========================================
+//          ROOT / HEALTH ENDPOINT
+// ==========================================
+// This stops Vercel from showing "Cannot GET /"
+app.get("/", (req, res) => {
+  res.status(200).send("Zerodha Clone Backend Server is Running Successfully!");
+});
 
 // ==========================================
 //          AUTHENTICATION ENDPOINTS
@@ -101,30 +124,45 @@ app.post("/login", async (req, res) => {
 // ==========================================
 
 app.get("/allHoldings", async (req, res) => {
-  let allHoldings = await HoldingsModel.find({});
-  res.json(allHoldings);
+  try {
+    let allHoldings = await HoldingsModel.find({});
+    res.json(allHoldings);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.get("/allPositions", async (req, res) => {
-  let allPositions = await PositionsModel.find({});
-  res.json(allPositions);
+  try {
+    let allPositions = await PositionsModel.find({});
+    res.json(allPositions);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.post("/newOrder", async (req, res) => {
-  let newOrder = new OrdersModel({
-    name: req.body.name,
-    qty: req.body.qty,
-    price: req.body.price,
-    mode: req.body.mode,
+  try {
+    let newOrder = new OrdersModel({
+      name: req.body.name,
+      qty: req.body.qty,
+      price: req.body.price,
+      mode: req.body.mode,
+    });
+
+    await newOrder.save();
+    res.send("Order saved!");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Only listen on port if running locally (Vercel doesn't use app.listen)
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
+}
 
-  await newOrder.save();
-  res.send("Order saved!");
-});
-
-// Start Server & Connect Database
-app.listen(PORT, () => {
-  console.log("App started!");
-  mongoose.connect(uri);
-  console.log("DB started!");
-});
+// CRITICAL FOR VERCEL: Export your express app instance
+module.exports = app;
