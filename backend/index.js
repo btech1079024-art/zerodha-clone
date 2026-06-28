@@ -17,13 +17,11 @@ const UserModel = require("./model/UserModel");
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
-
-// Secure token fallback secret
 const JWT_SECRET = process.env.JWT_SECRET || "zerodha_super_secret_token_key";
 
 const app = express();
 
-// Updated CORS configuration to handle requests from your Vercel frontend
+// CORS configuration
 app.use(cors({
   origin: ["https://zerodha-clone-m4dl.vercel.app", "http://localhost:5173", "http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -32,19 +30,47 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-// Connect to MongoDB immediately (Crucial for Serverless Environments)
-if (uri) {
-  mongoose.connect(uri)
-    .then(() => console.log("MongoDB connected successfully!"))
-    .catch((err) => console.error("MongoDB connection error:", err));
-} else {
-  console.warn("Warning: MONGO_URL environment variable is missing.");
-}
+// ==========================================
+//   SERVERLESS MONGOOSE CONNECTION BUFFER FIX
+// ==========================================
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected) {
+    return;
+  }
+
+  if (!uri) {
+    console.error("MONGO_URL environment variable is missing!");
+    return;
+  }
+
+  try {
+    // These options force Mongoose to fail quickly if connection is lost rather than hang/buffer
+    const db = await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 5000, 
+    });
+    isConnected = db.connections[0].readyState === 1;
+    console.log("MongoDB connected successfully via Serverless function!");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    throw err;
+  }
+};
+
+// Middleware to ensure DB is connected before handling any incoming requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Database connection failed. Please try again." });
+  }
+});
 
 // ==========================================
 //          ROOT / HEALTH ENDPOINT
 // ==========================================
-// This stops Vercel from showing "Cannot GET /"
 app.get("/", (req, res) => {
   res.status(200).send("Zerodha Clone Backend Server is Running Successfully!");
 });
@@ -53,22 +79,19 @@ app.get("/", (req, res) => {
 //          AUTHENTICATION ENDPOINTS
 // ==========================================
 
-// 1. SIGNUP ROUTE: Registers a new user with an encrypted password
+// 1. SIGNUP ROUTE
 app.post("/signup", async (req, res) => {
   try {
     const { email, username, password } = req.body;
 
-    // Check if the email or username is already taken
     const existingUser = await UserModel.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.status(400).json({ success: false, message: "Username or Email already registered." });
     }
 
-    // Salt and hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Save the user inside your MongoDB collection
     const newUser = new UserModel({
       email,
       username,
@@ -83,24 +106,21 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// 2. LOGIN ROUTE: Validates credentials and returns a secure JWT string
+// 2. LOGIN ROUTE
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check if the user exists
     const user = await UserModel.findOne({ email });
     if (!user) {
       return res.status(400).json({ success: false, message: "Invalid email or password." });
     }
 
-    // Compare inputted password against encrypted hash strings
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ success: false, message: "Invalid email or password." });
     }
 
-    // Sign and create a JWT payload session string valid for 1 day
     const token = jwt.sign(
       { id: user._id, username: user.username },
       JWT_SECRET,
@@ -157,12 +177,10 @@ app.post("/newOrder", async (req, res) => {
   }
 });
 
-// Only listen on port if running locally (Vercel doesn't use app.listen)
 if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
 
-// CRITICAL FOR VERCEL: Export your express app instance
 module.exports = app;
