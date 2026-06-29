@@ -1,50 +1,45 @@
 import React from "react";
 
+const instruments = [
+  { icon: "📈", label: "Futures & Options" },
+  { icon: "🥇", label: "Commodity derivatives" },
+  { icon: "💱", label: "Currency derivatives" },
+  { icon: "🏢", label: "Stocks & IPOs" },
+  { icon: "📊", label: "Direct mutual funds" },
+  { icon: "🏛️", label: "Bonds & Govt. Securities" },
+];
+
 function Awards() {
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-6 p-5">
-          <img src="media/images/largestBroker.svg" />
+    <section className="zp-awards">
+      <div className="zp-section-inner zp-awards__grid">
+        <div className="zp-awards__visual">
+          <img src="media/images/largestBroker.svg" alt="Largest broker badge" className="zp-awards__badge" />
         </div>
-        <div className="col-6 p-5 mt-5">
-          <h1>Largest stock broker in India</h1>
-          <p className="mb-5">
-            2+ million Zerodha clients contribute to over 15% of all retail
-            order volumes in India daily by trading and investing in:
+
+        <div className="zp-awards__content">
+          <span className="zp-eyebrow">Market leadership</span>
+          <h2 className="zp-section-title">Largest stock broker<br />in India</h2>
+          <p className="zp-section-body">
+            1.3 crore+ Zerodha clients contribute to over 15% of all retail order volumes in India daily — trading and investing across every major asset class.
           </p>
-          <div className="row">
-            <div className="col-6">
-              <ul>
-                <li>
-                  <p>Futures and Options</p>
-                </li>
-                <li>
-                  <p>Commodity derivatives</p>
-                </li>
-                <li>
-                  <p>Currency derivatives</p>
-                </li>
-              </ul>
-            </div>
-            <div className="col-6">
-              <ul>
-                <li>
-                  <p>Stocks & IPOs</p>
-                </li>
-                <li>
-                  <p>Direct mutual funds</p>
-                </li>
-                <li>
-                  <p>Bonds and Govt. Securities</p>
-                </li>
-              </ul>
-            </div>
+
+          <div className="zp-awards__instruments">
+            {instruments.map(({ icon, label }) => (
+              <div key={label} className="zp-instrument-chip">
+                <span className="zp-instrument-chip__icon">{icon}</span>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
-          <img src="media/images/pressLogos.png" style={{ width: "90%" }} />
+
+          <div className="zp-awards__press">
+            <p className="zp-press-label">As seen in</p>
+            <img src="media/images/pressLogos.png" alt="Press coverage" className="zp-press-img" />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

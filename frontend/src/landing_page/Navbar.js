@@ -1,70 +1,79 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "./home.css";
 
 function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const isActive = (path) => location.pathname === path;
+
+  const navLinks = [
+    ["/signup", "Signup"],
+    ["/login", "Login"],
+    ["/about", "About"],
+    ["/product", "Product"],
+    ["/pricing", "Pricing"],
+    ["/support", "Support"],
+  ];
+
   return (
-    <nav
-      className="navbar navbar-expand-lg border-bottom"
-      style={{ backgroundColor: "#FFF" }}
-    >
-      <div className="container p-2">
-        <Link className="navbar-brand" to="/">
-          <img
-            src="media/images/logo.svg"
-            style={{ width: "25%" }}
-            alt="Logo"
-          />
+    <nav className={`zp-navbar ${scrolled ? "zp-navbar--scrolled" : ""}`}>
+      <div className="zp-navbar__inner">
+        <Link to="/" className="zp-navbar__brand">
+          <img src="media/images/logo.svg" alt="Zerodha" className="zp-navbar__logo" />
         </Link>
+
+        {/* Desktop nav */}
+        <ul className="zp-navbar__links">
+          {navLinks.map(([path, label]) => (
+            <li key={path}>
+              <Link
+                to={path}
+                className={`zp-nav-link 
+                  ${isActive(path) ? "zp-nav-link--active" : ""} 
+                  ${path === "/login" ? "zp-nav-link--cta" : ""}`}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile hamburger */}
         <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          className={`zp-navbar__hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span />
+          <span />
+          <span />
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {/* Changed form to a clean div container and pushed contents to the right using ms-auto */}
-          <div className="navbar-collapse justify-content-end" id="navbarNav">
-            <ul className="navbar-nav mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link active" to="/signup">
-                  Signup
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/login" style={{ color: "#387ed1", fontWeight: "500" }}>
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/about">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/product">
-                  Product
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/pricing">
-                  Pricing
-                </Link>
-              </li>
-              <li className="nav-item">
-                {/* Fixed internal route path syntax typo string from "support" to "/support" */}
-                <Link className="nav-link active" to="/support">
-                  Support
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
+
+      {/* Mobile drawer */}
+      {menuOpen && (
+        <div className="zp-navbar__drawer">
+          {navLinks.map(([path, label]) => (
+            <Link
+              key={path}
+              to={path}
+              className={`zp-drawer-link ${isActive(path) ? "zp-drawer-link--active" : ""}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
