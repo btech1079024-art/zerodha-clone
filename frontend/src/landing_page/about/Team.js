@@ -1,49 +1,71 @@
 import React from "react";
 
+const team = [
+  {
+    name: "Aman Sinha",
+    role: "Founder & CEO",
+    img: "media/images/aman.jpg",
+    bio: [
+      "Aman bootstrapped and founded Zerodha in 2010 to overcome the hurdles he faced during his decade-long stint as a trader. Today, Zerodha has fundamentally changed the landscape of the Indian broking industry.",
+      "He is a member of the SEBI Secondary Market Advisory Committee (SMAC) and the Market Data Advisory Committee (MDAC).",
+      "Playing basketball is his zen.",
+    ],
+    links: [
+      { label: "Homepage", href: "#" },
+      { label: "TradingQnA", href: "#" },
+      { label: "Twitter", href: "#" },
+    ],
+  },
+];
+
 function Team() {
   return (
-    <div className="container">
-      <div className="row p-3 mt-5 border-top">
-        <h1 className="text-center ">People</h1>
-      </div>
+    <section className="ab-team">
+      <div className="ab-inner">
+        <div className="ab-team__header">
+          <span className="ab-eyebrow">The people</span>
+          <h2 className="ab-section-title">Meet the team</h2>
+        </div>
 
-      <div
-        className="row p-3 text-muted"
-        style={{ lineHeight: "1.8", fontSize: "1.2em" }}
-      >
-        <div className="col-6 p-3 text-center">
-          {/* Updated style dimensions here to fix the squished aspect ratio */}
-          <img
-            src="media/images/aman.jpg" 
-            alt="Aman"
-            style={{ 
-              borderRadius: "50%", 
-              width: "250px",       // Equal width and height gives a perfect square base
-              height: "250px", 
-              objectFit: "cover"    // Keeps your face proportional instead of stretching
-            }}
-          />
-          <h4 className="mt-5">Aman</h4>
-          <h6>Founder, CEO</h6>
-        </div>
-        <div className="col-6 p-3">
-          <p>
-            Aman bootstrapped and founded Zerodha in 2010 to overcome the
-            hurdles he faced during his decade long stint as a trader. Today,
-            Zerodha has changed the landscape of the Indian broking industry.
-          </p>
-          <p>
-            He is a member of the SEBI Secondary Market Advisory Committee
-            (SMAC) and the Market Data Advisory Committee (MDAC).
-          </p>
-          <p>Playing basketball is his zen.</p>
-          <p>
-            Connect on <a href="">Homepage</a> / <a href="">TradingQnA</a> /{" "}
-            <a href="">Twitter</a>
-          </p>
+        <div className="ab-team__grid">
+          {team.map(({ name, role, img, bio, links }) => (
+            <div key={name} className="ab-member-card">
+              {/* Avatar */}
+              <div className="ab-member-card__avatar-wrap">
+                <img
+                  src={img}
+                  alt={name}
+                  className="ab-member-card__avatar"
+                />
+              </div>
+
+              {/* Info */}
+              <div className="ab-member-card__info">
+                <div className="ab-member-card__meta">
+                  <h3 className="ab-member-card__name">{name}</h3>
+                  <span className="ab-member-card__role">{role}</span>
+                </div>
+
+                <div className="ab-member-card__bio">
+                  {bio.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+
+                <div className="ab-member-card__links">
+                  <span className="ab-member-card__connect">Connect →</span>
+                  {links.map(({ label, href }) => (
+                    <a key={label} href={href} className="ab-member-link">
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
