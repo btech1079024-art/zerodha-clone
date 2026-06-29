@@ -1,0 +1,347 @@
+/* ============================================================
+   Pricing Page — ZeroPro
+   Consistent with Products page token system
+   ============================================================ */
+
+:root {
+  --p-navy: #1a1f3a;
+  --p-accent: #387ED1;
+  --p-accent-hover: #2b6ab8;
+  --p-muted: #6b7280;
+  --p-border: #e5e7eb;
+  --p-bg-alt: #f7f8fc;
+  --p-tag-bg: #eef4fd;
+  --p-tag-text: #387ED1;
+  --p-white: #ffffff;
+  --p-font: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --p-radius: 16px;
+  --p-shadow: 0 4px 24px rgba(26, 31, 58, 0.08);
+  --p-shadow-hover: 0 12px 40px rgba(26, 31, 58, 0.14);
+  --p-transition: 0.25s ease;
+}
+
+.pricing-page {
+  font-family: var(--p-font);
+  color: var(--p-navy);
+  background: var(--p-white);
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   EYEBROW (shared)
+   ============================================================ */
+.pricing-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--p-accent);
+  margin-bottom: 16px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.pricing-hero {
+  background: var(--p-navy);
+  padding: 80px 24px 0;
+  overflow: hidden;
+}
+
+.pricing-hero-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 56px;
+}
+
+.pricing-hero-title {
+  font-size: clamp(38px, 5.5vw, 64px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 0 0 18px;
+}
+
+.pricing-hero-subtitle {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---- Pricing cards row ---- */
+.pricing-cards-row {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 0 0;
+  position: relative;
+  top: 48px;
+}
+
+.pricing-highlight-card {
+  background: var(--p-white);
+  border-radius: var(--p-radius) var(--p-radius) 0 0;
+  padding: 36px 32px 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--p-shadow);
+  transition: transform var(--p-transition), box-shadow var(--p-transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--p-shadow-hover);
+}
+
+.pricing-highlight-card--accent {
+  background: var(--p-accent);
+}
+
+.pricing-amount {
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--p-navy);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.pricing-amount--white {
+  color: #ffffff;
+}
+
+.pricing-card-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--p-navy);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.pricing-card-label--white {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pricing-card-desc {
+  font-size: 13.5px;
+  color: var(--p-muted);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+
+.pricing-card-desc--white {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pricing-card-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-top: 24px;
+  align-self: flex-end;
+  opacity: 0.9;
+}
+
+.pricing-card-img--dim {
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================================
+   BROKERAGE SECTION
+   ============================================================ */
+.brokerage-section {
+  background: var(--p-bg-alt);
+  padding: 120px 24px 80px;
+  margin-top: 48px;
+}
+
+.brokerage-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.brokerage-title {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  color: var(--p-navy);
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.brokerage-sub {
+  font-size: 15px;
+  color: var(--p-muted);
+  line-height: 1.65;
+  margin: 0 0 28px;
+}
+
+.brokerage-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--p-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background var(--p-transition), transform var(--p-transition), box-shadow var(--p-transition);
+  box-shadow: 0 4px 16px rgba(56, 126, 209, 0.35);
+}
+
+.brokerage-cta:hover {
+  background: var(--p-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56, 126, 209, 0.45);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ---- Charges card ---- */
+.charges-card {
+  background: var(--p-white);
+  border-radius: var(--p-radius);
+  border: 1px solid var(--p-border);
+  padding: 32px;
+  box-shadow: var(--p-shadow);
+}
+
+.charges-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--p-border);
+}
+
+.charges-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--p-navy);
+  margin: 0;
+}
+
+.charges-list-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--p-accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.charges-list-link:hover {
+  text-decoration: underline;
+}
+
+.charges-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.charges-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--p-muted);
+  line-height: 1.6;
+}
+
+.charges-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--p-accent);
+  margin-top: 7px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .pricing-cards-row {
+    grid-template-columns: 1fr;
+    top: 0;
+    padding: 0 0 40px;
+    gap: 14px;
+  }
+
+  .pricing-highlight-card {
+    border-radius: var(--p-radius);
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .pricing-card-img {
+    margin-top: 0;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+
+  .pricing-hero {
+    padding-bottom: 32px;
+  }
+
+  .brokerage-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .brokerage-section {
+    padding: 60px 20px;
+  }
+
+  .charges-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 580px) {
+  .pricing-hero {
+    padding: 60px 20px 24px;
+  }
+
+  .pricing-highlight-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pricing-card-img {
+    align-self: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    transform: none !important;
+  }
+}
