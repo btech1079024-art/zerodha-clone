@@ -1,63 +1,77 @@
 import React from "react";
-
 import Hero from "./Hero";
-import LeftSection from "./LeftSection";
-import RightSection from "./RightSection";
+import ProductSection from "./ProductSection";
 import Universe from "./Universe";
+import "./Products.css";
 
-import Navbar from "../Navbar";
-import Footer from "../Footer";
-
-function PricingPage() {
+function ProductsPage() {
   return (
-    <>
+    <div className="products-page">
       <Hero />
-      <LeftSection
+
+      <ProductSection
         imageURL="media/images/kite.png"
         productName="Kite"
-        productDesription="Our ultra-fast flagship trading platform with streaming market data, advanced charts, an elegant UI, and more. Enjoy the Kite experience seamlessly on your Android and iOS devices."
-        tryDemo=""
-        learnMore=""
-        googlePlay=""
-        appStore=""
+        productTag="Flagship Platform"
+        productDescription="Our ultra-fast trading platform with streaming market data, advanced charting tools, and an elegant UI. Available on web, Android, and iOS — built for traders who demand speed and clarity."
+        tryDemo="#"
+        learnMore="#"
+        googlePlay="#"
+        appStore="#"
+        reverse={false}
       />
-      <RightSection
+
+      <ProductSection
         imageURL="media/images/console.png"
         productName="Console"
-        productDesription="The central dashboard for your Zerodha account. Gain insights into your trades and investments with in-depth reports and visualisations."
-        learnMore=""
+        productTag="Portfolio Dashboard"
+        productDescription="The central hub for your ZeroPro account. Gain deep insights into your trades and investments with in-depth reports, visualisations, and tax tools — all in one place."
+        learnMore="#"
+        reverse={true}
       />
-      <LeftSection
+
+      <ProductSection
         imageURL="media/images/coin.png"
         productName="Coin"
-        productDesription="Buy direct mutual funds online, commission-free, delivered directly to your Demat account. Enjoy the investment experience on your Android and iOS devices."
-        tryDemo=""
-        learnMore=""
-        googlePlay=""
-        appStore=""
+        productTag="Mutual Funds"
+        productDescription="Buy direct mutual funds online, commission-free, delivered directly to your Demat account. Zero expense ratio markups, ever. Available on Android and iOS."
+        tryDemo="#"
+        learnMore="#"
+        googlePlay="#"
+        appStore="#"
+        reverse={false}
       />
-      <RightSection
+
+      <ProductSection
         imageURL="media/images/kiteconnect.png"
         productName="Kite Connect API"
-        productDesription="Build powerful trading platforms and experiences with our super simple HTTP/JSON APIs. If you are a startup, build your investment app and showcase it to our clientbase."
-        learnMore=""
+        productTag="For Developers"
+        productDescription="Build powerful trading platforms with our clean HTTP/JSON APIs. If you're a startup or developer, create your investment app and showcase it to our 1.5 crore+ clientbase."
+        learnMore="#"
+        reverse={true}
       />
-      <LeftSection
+
+      <ProductSection
         imageURL="media/images/varsity.png"
-        productName="Varsity mobile"
-        productDesription="An easy to grasp, collection of stock market lessons with in-depth coverage and illustrations. Content is broken down into bite-size cards to help you learn on the go."
-        tryDemo=""
-        learnMore=""
-        googlePlay=""
-        appStore=""
+        productName="Varsity"
+        productTag="Learn to Trade"
+        productDescription="A free, structured collection of stock market lessons with in-depth coverage and illustrated examples. Broken into bite-size modules so you can learn at your own pace, anywhere."
+        learnMore="#"
+        googlePlay="#"
+        appStore="#"
+        reverse={false}
       />
-      <p className="text-center mt-5 mb-5">
-        Want to know more about our technology stack? Check out the Zerodha.tech
-        blog.
-      </p>
+
+      <div className="tech-note">
+        <p>
+          Curious about how we build this?{" "}
+          <a href="#">Read the ZeroPro engineering blog →</a>
+        </p>
+      </div>
+
       <Universe />
-    </>
+    </div>
   );
 }
 
-export default PricingPage;
+export default ProductsPage;
