@@ -1,150 +1,259 @@
-:root {
-  --primary-blue: #387ed1;
-  --text-dark: #444444;
-  --text-muted: #9b9b9b;
-  --border-light: #eeeeee;
-  --bg-card-hover: #fbfbfb;
+/* ═══════════════════════════════════════
+   APPS.CSS — Dashboard Apps Page
+   ═══════════════════════════════════════ */
+
+.apps-wrap {
+  padding: 28px 32px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8f9fb;
+  min-height: 100vh;
 }
 
-.apps-page-container {
-  padding: 40px 30px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text-dark);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Hero Heading Layout */
+/* ── HERO ───────────────────────────────── */
 .apps-hero {
-  text-align: left;
-  margin-bottom: 40px;
-}
-
-.apps-hero h2 {
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.apps-hero p {
-  font-size: 16px;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.hero-divider {
-  width: 60px;
-  height: 3px;
-  background-color: var(--primary-blue);
-  margin-top: 15px;
-  border-radius: 2px;
-}
-
-/* Cards Grid */
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-/* Card Individual Design */
-.app-card {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  padding: 30px 25px;
-  position: relative;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-/* Modern Hover Effect for the presentation wow factor */
-.app-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  border-color: #dcdcdc;
-  background-color: var(--bg-card-hover);
-}
-
-/* Badges styling */
-.app-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background-color: #e3f2fd;
-  color: var(--primary-blue);
+.apps-eyebrow {
+  display: inline-block;
   font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: #387ed1;
+  margin-bottom: 8px;
 }
 
-/* Card Header Configuration */
-.app-card-header {
-  margin-bottom: 18px;
+.apps-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
 }
 
-.logo-wrapper {
-  height: 50px;
+.apps-sub {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+  max-width: 480px;
+}
+
+/* Search */
+.apps-search-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.apps-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #bbb;
+  pointer-events: none;
+}
+
+.apps-search {
+  padding: 10px 16px 10px 36px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1a1a2e;
+  background: #fff;
+  outline: none;
+  width: 220px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.apps-search:focus {
+  border-color: #387ed1;
+  box-shadow: 0 0 0 3px rgba(56,126,209,0.1);
+}
+
+/* ── FILTERS ────────────────────────────── */
+.apps-filters {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
-.app-logo-img {
+.apps-filter-btn {
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.apps-filter-btn:hover {
+  border-color: #387ed1;
+  color: #387ed1;
+}
+
+.apps-filter-btn.active {
+  background: #387ed1;
+  border-color: #387ed1;
+  color: #fff;
+}
+
+.apps-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+/* ── GRID ───────────────────────────────── */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+/* ── CARD ───────────────────────────────── */
+.app-card {
+  background: #fff;
+  border: 1.5px solid #e8e8ed;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.app-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+  border-color: #d0d0d8;
+}
+
+/* Badge */
+.app-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+/* Header */
+.app-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.app-logo-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.app-logo {
+  max-width: 100%;
   max-height: 100%;
-  max-width: 160px;
   object-fit: contain;
 }
 
-.app-card h3 {
-  font-size: 20px;
-  font-weight: 500;
-  margin: 0 0 4px 0;
-  color: #333;
+.app-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 3px;
 }
 
 .app-tagline {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Description */
+.app-desc {
   font-size: 13px;
-  color: var(--primary-blue);
-  font-weight: 500;
-  display: block;
-}
-
-/* Description text block */
-.app-description {
-  font-size: 14px;
   color: #666;
-  line-height: 1.6;
-  margin: 0 0 25px 0;
-  flex-grow: 1;
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
 }
 
-/* Button UI */
-.btn-explore {
+/* Footer */
+.app-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #f5f5f5;
+  margin-top: auto;
+}
+
+.app-users {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.app-launch-btn {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #387ed1;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
   text-decoration: none;
-  color: var(--primary-blue);
-  font-weight: 500;
-  font-size: 14px;
-  transition: color 0.2s ease;
+  transition: background 0.15s, transform 0.1s;
 }
 
-.btn-explore:hover {
-  color: #245fa6;
+.app-launch-btn:hover {
+  background: #2d6bbf;
+  transform: translateX(2px);
 }
 
-.arrow-icon {
-  transition: transform 0.2s ease;
-  margin-left: 4px;
+/* Empty state */
+.apps-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: #aaa;
 }
 
-.btn-explore:hover .arrow-icon {
-  transform: translateX(4px);
+.apps-empty span { font-size: 40px; display: block; margin-bottom: 12px; }
+.apps-empty p { font-size: 15px; font-weight: 500; }
+
+@media (max-width: 600px) {
+  .apps-wrap { padding: 20px 16px; }
+  .apps-grid { grid-template-columns: 1fr; }
+  .apps-hero { flex-direction: column; align-items: flex-start; }
+  .apps-search { width: 100%; }
 }
