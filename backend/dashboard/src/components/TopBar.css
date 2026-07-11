@@ -1,7 +1,8 @@
 /* ── TOPBAR ─────────────────────────────────────── */
 .topbar-container {
+/* TO THIS */
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   position: sticky;
   top: 0;
   z-index: 50;
