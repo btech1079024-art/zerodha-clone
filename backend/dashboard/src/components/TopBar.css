@@ -1,13 +1,12 @@
 /* ── TOPBAR ─────────────────────────────────────── */
 .topbar-container {
-/* TO THIS */
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;  /* back to column, NOT column-reverse */
   position: sticky;
   top: 0;
   z-index: 50;
   background: #fff;
-  box-shadow: 0 1px 0 #e8e8ed;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 /* ── TICKER STRIP ───────────────────────────────── */
@@ -15,8 +14,9 @@
   width: 100%;
   background: #0f1923;
   overflow: hidden;
-  padding: 6px 0;
-  border-bottom: 1px solid #1e2d3d;
+  padding: 7px 0;
+  border-bottom: 2px solid #1e2d3d;
+  min-height: 32px;  /* ADD THIS LINE */
 }
 
 .ticker-track {
