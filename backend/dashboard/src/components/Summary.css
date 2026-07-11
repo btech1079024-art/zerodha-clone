@@ -1,0 +1,250 @@
+/* ═══════════════════════════════════════════
+   SUMMARY.CSS — Dashboard Summary Panel
+   ═══════════════════════════════════════════ */
+
+.summary-wrap {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8f9fb;
+  min-height: 100vh;
+}
+
+/* ── GREETING ─────────────────────────────── */
+.summary-greeting {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary-greeting__name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+}
+
+.summary-greeting__sub {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+.summary-greeting__date {
+  font-size: 13px;
+  color: #aaa;
+  font-weight: 500;
+  background: #fff;
+  border: 1px solid #e8e8ed;
+  padding: 6px 14px;
+  border-radius: 99px;
+}
+
+/* ── CARDS ROW ────────────────────────────── */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Individual card */
+.sum-card {
+  background: #ffffff;
+  border: 1.5px solid #e8e8ed;
+  border-radius: 14px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.sum-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.sum-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sum-card__label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #888;
+  margin: 0 0 6px;
+}
+
+.sum-card__value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a2e;
+  letter-spacing: -0.5px;
+  margin: 0 0 4px;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.sum-card__unit {
+  font-size: 16px;
+  font-weight: 500;
+  color: #aaa;
+}
+
+.sum-card__pct {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sum-card__sub {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
+
+/* Icon badge */
+.sum-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sum-card__icon--blue {
+  background: rgba(56, 126, 209, 0.1);
+  color: #387ed1;
+}
+
+.sum-card__icon--gold {
+  background: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+/* Sparkline */
+.sparkline {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* Divider */
+.sum-card__divider {
+  height: 1px;
+  background: #f0f0f0;
+}
+
+/* Meta row */
+.sum-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sum-card__meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sum-card__meta-label {
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.sum-card__meta-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+/* ── P&L BANNER ───────────────────────────── */
+.pnl-banner {
+  border-radius: 14px;
+  padding: 20px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border: 1.5px solid transparent;
+}
+
+.pnl-banner--profit {
+  background: rgba(46, 204, 113, 0.07);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+
+.pnl-banner--loss {
+  background: rgba(231, 76, 60, 0.07);
+  border-color: rgba(231, 76, 60, 0.25);
+}
+
+.pnl-banner__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pnl-banner__icon { font-size: 28px; }
+
+.pnl-banner__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 3px;
+}
+
+.pnl-banner__sub {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
+
+.pnl-banner__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pnl-banner__amount {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.pnl-banner__pct {
+  font-size: 14px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.6);
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+/* ── PROFIT / LOSS COLOURS ────────────────── */
+.profit { color: #2ecc71; }
+.loss   { color: #e74c3c; }
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 900px) {
+  .summary-cards { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 560px) {
+  .summary-wrap { padding: 20px 16px; }
+  .summary-cards { grid-template-columns: 1fr; }
+  .pnl-banner { flex-direction: column; align-items: flex-start; }
+}
